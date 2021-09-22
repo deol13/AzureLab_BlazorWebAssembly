@@ -10,33 +10,36 @@
 }
 else
 {
-    <table class="table">
-        <thead>
+<table class="table">
+    <thead>
+        <tr>
+            <th>DeviceId</th>
+            <th>Status</th>
+            <th>Placement</th>
+            <th>Last updated</th>
+            <th>Humd. (%)</th>
+            <th>Temp. (C)</th>
+            <th>Temp. (F)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var sensore in sensores)
+        {
+
             <tr>
-                <th>DeviceId</th>
-                <th>Status</th>
-                <th>Placement</th>
-                <th>Last updated</th>
-                <th>Humd. (%)</th>
-                <th>Temp. (C)</th>
-                <th>Temp. (F)</th>
+                <td>@sensore.DeviceId</td>
+                <td>@sensore.Status</td>
+                <td>@sensore.Placement</td>
+                <td>@sensore.LastUpdated.ToShortDateString() @sensore.LastUpdated.ToLongTimeString()</td>
+                <td>@sensore.Humidity</td>
+                <td>@sensore.TemperatureC</td>
+                <td>@sensore.TemperatureF</td>
+                <href @onclick="() => StartOrStopSending(sensore.UnitId)" class="btn btn-primary">Start/Stop @sensore.UnitId</href>
+                <td hidden="!@sensore.TemperatureAlert">Warning, temperature too high!</td>
             </tr>
-        </thead>
-        <tbody>
-            @foreach (var sensore in sensores)
-            {
-                <tr>
-                    <td>@sensore.DeviceId</td>
-                    <td>@sensore.Status</td>
-                    <td>@sensore.Placement</td>
-                    <td>@sensore.LastUpdated.ToShortDateString() @sensore.LastUpdated.ToLongTimeString()</td>
-                    <td>@sensore.Humidity</td>
-                    <td>@sensore.TemperatureC</td>
-                    <td>@sensore.TemperatureF</td>
-                </tr>
-            }
-        </tbody>
-    </table>
+        }
+    </tbody>
+</table>
 }
 
 
@@ -48,26 +51,38 @@ else
         sensores = new SensoreData[2];
 
         sensores[0] = new SensoreData();
+        sensores[0].UnitId = 0;
         sensores[0].DeviceId = "35d42f3-23hj94-75f3-66f5l2-23jm673h3j";
         sensores[0].Status = true;
         sensores[0].Placement = "Kitchen";
         DateTime date = new DateTime(2021, 09, 22, 18, 30, 22);
         sensores[0].LastUpdated = date;
         sensores[0].Humidity = 40;
-        sensores[0].TemperatureC = 20;
+        sensores[0].TemperatureC = 70;
+        if (sensores[0].TemperatureC >= 60)
+            sensores[0].TemperatureAlert = true;
+        else
+            sensores[0].TemperatureAlert = false;
 
         sensores[1] = new SensoreData();
+        sensores[1].UnitId = 1;
         sensores[1].DeviceId = "89sd823f-1j34k-8d52j-82h5h2-1j2j6k78k2";
         sensores[1].Status = false;
         sensores[1].Placement = "Bedroom";
         DateTime date2 = new DateTime(2021, 09, 22, 20, 02, 30);
-        sensores[1].LastUpdated = date;
+        sensores[1].LastUpdated = date2;
         sensores[1].Humidity = 39;
         sensores[1].TemperatureC = 22;
+        if (sensores[1].TemperatureC >= 60)
+            sensores[1].TemperatureAlert = true;
+        else
+            sensores[1].TemperatureAlert = false;
     }
 
     public class SensoreData
     {
+        public int UnitId { get; set; }
+
         public string DeviceId { get; set; }
 
         public bool Status { get; set; }
@@ -81,5 +96,20 @@ else
         public int TemperatureC { get; set; }
 
         public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+
+        public bool TemperatureAlert { get; set; }
     }
+
+    private void StartOrStopSending(int id)
+    {
+        if (sensores.Length > 0 && id < sensores.Length)
+        {
+            if (sensores[id].Status)
+                sensores[id].Status = false;
+            else
+                sensores[id].Status = true;
+        }
+    }
+
+
 }
