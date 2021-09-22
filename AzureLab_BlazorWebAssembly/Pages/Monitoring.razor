@@ -34,8 +34,8 @@ else
                 <td>@sensore.Humidity</td>
                 <td>@sensore.TemperatureC</td>
                 <td>@sensore.TemperatureF</td>
-                <href @onclick="() => StartOrStopSending(sensore.UnitId)" class="btn btn-primary">Start/Stop @sensore.UnitId</href>
-                <td hidden="!@sensore.TemperatureAlert">Warning, temperature too high!</td>
+                <href @onclick="() => StartOrStopSending(sensore.UnitId)" class="btn btn-primary">Start/Stop</href>
+                <td hidden="@sensore.ReverseTempAlertForHiddenAttr()">Warning, temperature too high!</td>
             </tr>
         }
     </tbody>
@@ -98,6 +98,17 @@ else
         public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
 
         public bool TemperatureAlert { get; set; }
+
+        /// <summary>
+        /// Because the html attribute hidden and TemperatureAlert are reversed of each other, this method is used by hidden attribute.
+        /// It returns the reverse of TemperatureAlert, if TemperatureAlert is true then false is returned so,
+        /// the hidden attribute will be removed.
+        /// </summary>
+        /// <returns>Reverse of TemperatureAlert</returns>
+        public bool ReverseTempAlertForHiddenAttr()
+        {
+            return !TemperatureAlert;
+        }
     }
 
     private void StartOrStopSending(int id)
@@ -111,5 +122,15 @@ else
         }
     }
 
+    private bool GetTempAlertToHidden(int id)
+    {
+        if (sensores.Length > 0 && id < sensores.Length)
+        {
+            if (sensores[id].TemperatureAlert)
+                return false;
+        }
+
+        return true;
+    }
 
 }
