@@ -4,73 +4,75 @@
 
 <p>This component shows the data from iot-sensores</p>
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>DeviceId</th>
-            <th>Status</th>
-            <th>Placement</th>
-            <th>Last updated</th>
-            <th>Humd. (%)</th>
-            <th>Temp. (C)</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var sensore in sensores)
-        {
-            <tr>
-                <td>@sensore.DeviceId</td>
-                <td>@sensore.Status</td>
-                <td>@sensore.Placement</td>
-                <td>@sensore.LastUpdated.ToShortDateString()</td>
-                <td>@sensore.Humidity</td>
-                <td>@sensore.TemperatureC</td>
-                <td>@sensore.TemperatureF</td>
-            </tr>
-        }
-    </tbody>
-</table>
+@code {}
+
+    @*<table class="table">
+            <thead>
+                <tr>
+                    <th>DeviceId</th>
+                    <th>Status</th>
+                    <th>Placement</th>
+                    <th>Last updated</th>
+                    <th>Humd. (%)</th>
+                    <th>Temp. (C)</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var sensore in sensores)
+                {
+                    <tr>
+                        <td>@sensore.DeviceId</td>
+                        <td>@sensore.Status</td>
+                        <td>@sensore.Placement</td>
+                        <td>@sensore.LastUpdated.ToShortDateString()</td>
+                        <td>@sensore.Humidity</td>
+                        <td>@sensore.TemperatureC</td>
+                        <td>@sensore.TemperatureF</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
 
 
-@code {
-    private SensoreData[] sensores;
+        @code {
+            private SensoreData[] sensores;
 
-    protected override async Task OnInitializedAsync()
-    {
-        //forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
-        sensores = new SensoreData[2];
+            protected override async Task OnInitializedAsync()
+            {
+                //forecasts = await Http.GetFromJsonAsync<WeatherForecast[]>("sample-data/weather.json");
+                sensores = new SensoreData[2];
 
-        sensores[0].DeviceId = "35d42f3-23hj94-75f3-66f5l2-23jm673h3j";
-        sensores[0].Status = true;
-        sensores[0].Placement = "Kitchen";
-        DateTime date = new DateTime(2021,09,22, 18,30,22);
-        sensores[0].LastUpdated = date;
-        sensores[0].Humidity = 40;
-        sensores[0].TemperatureC = 20;
+                sensores[0].DeviceId = "35d42f3-23hj94-75f3-66f5l2-23jm673h3j";
+                sensores[0].Status = true;
+                sensores[0].Placement = "Kitchen";
+                DateTime date = new DateTime(2021,09,22, 18,30,22);
+                sensores[0].LastUpdated = date;
+                sensores[0].Humidity = 40;
+                sensores[0].TemperatureC = 20;
 
-        sensores[1].DeviceId = "89sd823f-1j34k-8d52j-82h5h2-1j2j6k78k2";
-        sensores[1].Status = false;
-        sensores[1].Placement = "Bedroom";
-        DateTime date2 = new DateTime(2021,09,22, 20,02,30);
-        sensores[1].LastUpdated = date;
-        sensores[1].Humidity = 39;
-        sensores[1].TemperatureC = 22;
-    }
+                sensores[1].DeviceId = "89sd823f-1j34k-8d52j-82h5h2-1j2j6k78k2";
+                sensores[1].Status = false;
+                sensores[1].Placement = "Bedroom";
+                DateTime date2 = new DateTime(2021,09,22, 20,02,30);
+                sensores[1].LastUpdated = date;
+                sensores[1].Humidity = 39;
+                sensores[1].TemperatureC = 22;
+            }
 
-    public class SensoreData
-    {
-        public string DeviceId { get; set; }
+            public class SensoreData
+            {
+                public string DeviceId { get; set; }
 
-        public bool Status { get; set; }
+                public bool Status { get; set; }
 
-        public string Placement { get; set; }
+                public string Placement { get; set; }
 
-        public DateTime LastUpdated { get; set; }
+                public DateTime LastUpdated { get; set; }
 
-        public int Humidity { get; set; }
+                public int Humidity { get; set; }
 
-        public int TemperatureC { get; set; }
+                public int TemperatureC { get; set; }
 
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-    }
+                public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
+            }*@
 }
