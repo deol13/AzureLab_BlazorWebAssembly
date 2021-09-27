@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureLab_BlazorWebAssembly", "AzureLab_BlazorWebAssembly\AzureLab_BlazorWebAssembly.csproj", "{D3E923A5-1B9E-4558-8AC2-44E92AE67760}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureLab_BlazorWebAssembly", "AzureLab_BlazorWebAssembly\AzureLab_BlazorWebAssembly.csproj", "{D3E923A5-1B9E-4558-8AC2-44E92AE67760}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "Api\Api.csproj", "{012E7EE4-7748-4A2F-8BA5-2905208C163F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{D3E923A5-1B9E-4558-8AC2-44E92AE67760}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D3E923A5-1B9E-4558-8AC2-44E92AE67760}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D3E923A5-1B9E-4558-8AC2-44E92AE67760}.Release|Any CPU.Build.0 = Release|Any CPU
+		{012E7EE4-7748-4A2F-8BA5-2905208C163F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{012E7EE4-7748-4A2F-8BA5-2905208C163F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{012E7EE4-7748-4A2F-8BA5-2905208C163F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{012E7EE4-7748-4A2F-8BA5-2905208C163F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
